@@ -28,7 +28,7 @@
 				color: white;
 			}
 	</style>
-	<%@ include file="../module/top_nav.jsp" %>
+<%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
 	<h2>게시판 목록</h2>
 	<c:url var="boardUrl" value="/board" />
 	<div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보</title>
+<title>상단메뉴</title>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
@@ -40,11 +40,8 @@
           			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             			개인정보
           			</a>
-          			<ul class="dropdown-menu">
-          				<li class="nav-item">
-         			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo">조회</a>
-        				</li>
-            			<li class="nav-item">
+          			<ul class="dropdown-menu" style="left: -4em; z-index: 999999;">
+            			<li class="nav-item" style="">
          			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo">수정</a>
         				</li>
         				<li class="nav-item">

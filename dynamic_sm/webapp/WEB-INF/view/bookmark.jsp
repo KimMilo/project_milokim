@@ -13,95 +13,67 @@
 <head>
 <meta charset="UTF-8"> 
 <title><%=title %></title>
-<link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
-<script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
 </script>
 </head>
 <body>
-	<%-- 기존 버전 
-	<a href="./">메인</a>
-	<h2>즐겨찾기</h2>
-	<form action="./bookmark" method="post">
-		<div>
-			<label>URL 주소 :</label>
-			<input type="text" name="url">
-		</div>
-		<div>
-			<label>별칭 :</label>
-			<input type="text" name="name">
-		</div>
-		<div>
-			<button type="submit">등록</button>
-		</div>
-		</form>
-		<ul>
-		<% for(BookmarkDTO d: (List<BookmarkDTO>)request.getAttribute("data")) { %>
-			<li>
-				<a href="<%=d.getUrl() %>" target="_blank"><%=d.getName() %></a>
-				<button type="button" onclick="location.href='./bookmark/update?id=<%=d.getId() %>'">수정</button>
-				<button type="submit" form="deleteForm<%=d.getId() %>">삭제</button>
-				<form id="deleteForm<%=d.getId() %>" action="./bookmark/delete" method="post">
-				<!-- button에서 form 이름을 지정하면 form id명과 매칭해서 연결할 수 있음. -->
-					<input type="hidden" name="id" value="<%=d.getId() %>">
-				</form>
-			</li>
-		<% } %>
-	</ul>
-	--%>
-	
-	<%-- # JSTL 버전 --%>
-	<%@ include file="./module/top_nav.jsp" %>
-	<h2>즐겨찾기</h2>
-	<c:url var="bookmarkUrl" value="/bookmark" />
-	<form action="${bookmarkUrl }" method="post">
-		<div>
-			<label>URL 주소 :</label>
-			<input type="text" name="url">
-		</div>
-		<div>
-			<label>별칭 :</label>
-			<input type="text" name="name">
-		</div>
-		<div>
-			<button type="submit">등록</button>
-		</div>
-		</form>
-		<div>
-			<form action="${bookmarkUrl }">
-				<select name="cnt" onchange="submit();">
-					<option value="2" ${requestScope.paging.pageLimit eq 2 ? "selected" : "" }>2 개</option>
-					<c:forEach var="num" begin="5" end="30" step="5">
-						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-					</c:forEach>
-				</select>
+<%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
+<div class="container-fluid">
+	<section class="container-sm mt-5" style="width: 960px;">
+  		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">즐겨찾기 화면</button>
+  		</div>
+		<div class="tab-content" id="nav-tabContent">
+			<c:url var="bookmarkUrl" value="/bookmark" />
+			<form action="${bookmarkUrl }" method="post">
+				<div>
+					<label class="col-3 col-form-label">URL 주소</label>
+					<input class="col-9 form-control" type="text" name="url">
+				</div>
+				<div>
+					<label class="col-3 col-form-label">별칭</label>
+					<input class="col-9 form-control" type="text" name="name">
+				</div>
+				<div class="d-grid">
+					<button class="mt-2 btn btn-outline-primary" type="submit">등록</button>
+				</div>
 			</form>
-		</div>
-		<ul>
-		<c:url var="bookmarkDeleteUrl" value="bookmark/delte" />
-		<c:forEach var="d" items="${requestScope.paging.page }">
-			<c:url var="bookmarkUpdateUrl" value="bookmark/update">
-				<c:param name="id" value="${d.id }" />
-			</c:url>
-			<li>
-				<a href="${d.url }" target="_blank">${d.name }</a>
-				<%-- button type="button" onclick="location.href='./bookmark/update?id=${d.id}'">수정</button 
-				     c:url 활용 --%>
-				
-				<button type="button" onclick="location.href='${bookmarkUpdateUrl}'">수정</button>
-				<button type="submit" form="deleteForm${d.id }">삭제</button>
-				<%-- form id="deleteForm${d.id }" action="./bookmark/delete" method="post"
-				     c:url 활용 --%>
-				
-				<%-- form id="deleteForm${d.id }" action="${bookmarkDeleteUrl }" method="post"
-				     기존 c:url var="bookmarkUrl" 이용해서 활용 --%>
-				    <form id="deleteForm${d.id }" action="${bookmarkUrl }/delete" method="post">
-					<input type="hidden" name="id" value="${d.id }">
+			<div class="my-2">
+				<form action="${bookmarkUrl }">
+					<select name="cnt" onchange="submit();">
+						<option value="2" ${requestScope.paging.pageLimit eq 2 ? "selected" : "" }>2 개</option>
+						<c:forEach var="num" begin="5" end="30" step="5">
+							<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+						</c:forEach>
+					</select>
 				</form>
-			</li>
-		</c:forEach>
+			</div>
+		</div>
+		<ul class="list-group">
+			<c:url var="bookmarkDeleteUrl" value="bookmark/delte" />
+			<c:forEach var="d" items="${requestScope.paging.page }">
+				<c:url var="bookmarkUpdateUrl" value="bookmark/update">
+					<c:param name="id" value="${d.id }" />
+				</c:url>
+				<li class="list-group-item">
+					<div class="my-2 ms-auto d-flex justify-content-between">
+						<div>
+							<a href="${d.url }" target="_blank">${d.name }</a>										
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" type="button" onclick="location.href='${bookmarkUpdateUrl}'">수정</button>
+							<button class="btn btn-outline-secondary" type="submit" form="deleteForm${d.id }">삭제</button>							
+							<form id="deleteForm${d.id }" action="${bookmarkUrl }/delete" method="post">
+								<input type="hidden" name="id" value="${d.id }">
+							</form>
+						</div>
+					</div>
+				</li>
+			</c:forEach>
 		</ul>
-		<ul class="pagination">
+		<ul class="pagination mt-2">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 			<c:choose>
 				<c:when test="${requestScope.paging.prevPage eq - 1 }">
@@ -123,5 +95,7 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
+	</section>
+</div>
 </body>
 </html>

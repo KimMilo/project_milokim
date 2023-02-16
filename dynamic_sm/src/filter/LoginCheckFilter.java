@@ -19,13 +19,10 @@ public class LoginCheckFilter implements Filter{
 		HttpServletResponse response = (HttpServletResponse)resp;
 		HttpSession session = request.getSession();
 		
-		//System.out.println("로그인 체크 필터 시작");
 		if(session.getAttribute("login") == null) {
 			response.sendRedirect(request.getContextPath() + "/login");
-			//return;
 		} else {
 			chain.doFilter(req, resp);			
-			//System.out.println("로그인 체크 필터 종료");
 		}
 	}
 }
