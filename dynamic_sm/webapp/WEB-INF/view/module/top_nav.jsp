@@ -8,10 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상단메뉴</title>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
-</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg my-2 mx-2" style="background-color: #e3f2fd;">
@@ -23,15 +19,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 24px; font-weight: bold;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>">메인</a>
+         	<a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>">메인</a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link" href="<%=request.getContextPath()%>/board">게시판</a>
         </li>
         <c:choose>
 			<c:when test="${sessionScope.login }">
 				<li class="nav-item">
          			 <a class="nav-link" href="<%=request.getContextPath()%>/bookmark">즐겨찾기</a>
-        		</li>
-        		<li class="nav-item">
-         			 <a class="nav-link" href="<%=request.getContextPath()%>/board">게시판</a>
         		</li>
         		<li class="nav-item">
          			 <a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a>
@@ -40,7 +36,7 @@
           			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             			개인정보
           			</a>
-          			<ul class="dropdown-menu" style="left: -4em; z-index: 999999;">
+          			<ul class="dropdown-menu" style="left: 2em; z-index: 99999;">
             			<li class="nav-item" style="">
          			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo">수정</a>
         				</li>
