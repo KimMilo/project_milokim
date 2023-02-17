@@ -26,28 +26,34 @@
 				background-color: gray;
 				color: white;
 			}
+
 	</style>
 <body>
 <%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
-	<h2>게시판 목록</h2>
-	<c:url var="boardUrl" value="/board" />
-	<div>
-		<form action="${boardUrl }">
-			<select name="cnt" onchange="submit();">
-				<option value="2" ${requestScope.paging.pageLimit eq 2 ? "selected" : ""}>2 개</option>
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-		</form>
+<section class="container-sm mt-5" style="width: 960px;">
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+  		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">즐겨찾기 화면</button>
+	</div>
+	<div class="tab-content" id="nav-tabContent">
+		<c:url var="boardUrl" value="/board" />
+		<div class="my-2">
+			<form action="${boardUrl }">
+				<select name="cnt" onchange="submit();">
+					<option value="2" ${requestScope.paging.pageLimit eq 2 ? "selected" : ""}>2 개</option>
+					<c:forEach var="num" begin="5" end="30" step="5">
+						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+					</c:forEach>
+				</select>
+			</form>
+		</div>
 	</div>
 	<table style="border-style: solid; border-width: 1px; border-collapse: collapse;">
 		<colgroup>
-			<col style="width: 70px;">
-			<col style="width: 200px;">
-			<col style="width: 100px;">
-			<col style="width: 200px;">
-			<col style="width: 70px;">
+			<col style="width: 150px;">
+			<col style="width: 350px;">
+			<col style="width: 150px;">
+			<col style="width: 250px;">
+			<col style="width: 150px;">
 		</colgroup>
 		<thead>
 			<tr>
@@ -71,7 +77,7 @@
 		</tbody>
 	</table>
 	<div>
-		<ul class="pagination">
+		<ul class="mt-2 pagination">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 			<c:choose>
 				<c:when test="${requestScope.paging.prevPage eq - 1 }">
@@ -94,5 +100,6 @@
 			</c:choose>
 		</ul>
 	</div>
+</section>
 </body>
 </html>

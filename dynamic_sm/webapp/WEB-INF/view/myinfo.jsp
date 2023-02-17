@@ -14,30 +14,38 @@
 </script>
 </head>
 <body>
-<%@ include file="./module/top_nav.jsp" %>
-<h2>개인정보 수정</h2>
-<c:url var="myinfoUpdateUrl" value="/myinfo" />
-<form action="${myinfo }" method="post">
-	<div>
-		<label>아이디</label>
-		<input type="text" name="id" value="${sessionScope.user.userId }" disabled>
-	</div>
-	<div>
-		<label>현재 패스워드</label>
-		<input type="password" name="password" value="">
-		<span style="color: red;">${requestScope.error }</span>
-	</div>
-	<div>
-		<label>변경 할 패스워드</label>
-		<input type="password" name="changePass" value="">
-	</div>
-	<div>
-		<label>이메일 주소</label>
-		<input type="email" name="email" value="${sessionScope.user.email }">
-	</div>
-	<div>
-		<button type="submit">저장</button>
-	</div>
-</form>
+<%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
+<div class="container-fluid">
+	<section class="container-sm mt-5" style="width: 960px;">
+  		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">개인정보 수정</button>
+  		</div>
+		<div class="tab-content" id="nav-tabContent">
+			<c:url var="myinfoUpdateUrl" value="/myinfo" />
+			<form action="${myinfo }" method="post">
+				<div>
+					<label class="mt-2 col-3 col-form-control">아이디</label>
+					<input class="col-9 form-control" type="text" name="id" value="${sessionScope.user.userId }" disabled>
+				</div>
+				<div>
+					<label class="mt-2 col-3 col-form-control">현재 패스워드</label>
+					<input class="col-9 form-control" type="password" name="password" value="">
+					<span style="color: red;">${requestScope.error }</span>
+				</div>
+				<div>
+					<label class="mt-2 col-3 col-form-control">변경 할 패스워드</label>
+					<input class="col-9 form-control" type="password" name="changePass" value="">
+				</div>
+				<div>
+					<label class="mt-2 col-3 col-form-control">이메일 주소</label>
+					<input class="col-9 form-control" type="email" name="email" value="${sessionScope.user.email }">
+				</div>
+				<div>
+					<button class="mt-3 btn btn-outline-danger" type="submit">수정</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</div>	
 </body>
 </html>
