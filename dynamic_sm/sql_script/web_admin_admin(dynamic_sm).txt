@@ -1,0 +1,159 @@
+CREATE TABLE JOIN_T(
+	USERID VARCHAR2(20) PRIMARY KEY
+  , PASSWORD VARCHAR2(20) NOT NULL
+  , EMAIL VARCHAR2(100)
+);
+
+SELECT * FROM JOIN_T;
+
+DROP TABLE JOIN_T;
+
+CREATE TABLE BOOKMARK_T (
+    id NUMBER CONSTRAINT BOOKMARK_T_ID_PK PRIMARY KEY
+  , userId VARCHAR2(20) REFERENCES JOIN_T(userId)
+  ,	url VARCHAR2(100)
+  , name VARCHAR2(100)
+);
+
+<!--CREATE SEQUENCE SEQ_BOOKMARK_T NOCACHE; -->
+
+INSERT INTO BOOKMARK_T 
+	VALUES((SELECT NVL(MAX(id),0) + 1 FROM BOOKMARK_T)
+          , 'abcdef', 'https://naver.com', '네이버');
+INSERT INTO BOOKMARK_T 
+	VALUES((SELECT NVL(MAX(id),0) + 1 FROM BOOKMARK_T)
+          , 'abcdef', 'https://nate.com', '네이트');
+INSERT INTO BOOKMARK_T 
+	VALUES((SELECT NVL(MAX(id),0) + 1 FROM BOOKMARK_T)
+	 	  , 'test1', 'https://google.co.kr', '구글');
+INSERT INTO BOOKMARK_T 
+	VALUES((SELECT NVL(MAX(id),0) + 1 FROM BOOKMARK_T)
+          , 'test1', 'https://daum.net', '다음');
+
+
+SELECT * FROM BOOKMARK_T ORDER BY id;
+DROP TABLE BOOKMARK_T;
+DROP SEQUENCE SEQ_BOOKMARK_T;
+
+/**
+* 공지사항이 있는 게시판
+* btype 의 값이 N 인 경우 공지사항, B 인 경우 일반 게시물로 합니다.
+*
+* ------------------------------------------------------------ 
+* 	# 게시판 작성 시 Wordk Map 
+* 
+* 	1. 목록 페이지
+* 		- URL			: /web01/board
+* 		- Controller	: controller.board.IndexController
+* 		- View			: /WEB-INF/view/board/index.jsp
+* 
+* 	2. 상세 페이지
+* 		- URL			: /web01/board/detail
+* 		- Controller	: controller.board.DetailController
+* 		- View			: /WEB-INF/view/board/detail.jsp
+* 
+* 	3. 추가 페이지
+* 		- URL			: /web01/board/add
+* 		- Controller	: controller.board.AddController
+* 		- View			: /WEB-INF/view/board/add.jsp
+* 
+* 	4. 수정 페이지
+* 		- URL			: /web01/board/update
+* 		- Controller	: controller.board.UpdateController
+* 		- View			: /WEB-INF/view/board/update.jsp
+* 	
+* 	5 삭제 페이지
+* 		- URL			: /web01/board/delete
+* 		- Controller	: controller.board.DeleteController
+* 		- View			: 없음
+*--------------------------------------------------------------
+*/
+CREATE TABLE BOARD_T(
+	id NUMBER PRIMARY KEY
+  , btype VARCHAR2(1) CHECK(btype IN('N', 'B')) NOT NULL
+  , title VARCHAR2(500) NOT NULL
+  , context VARCHAR2(4000) NOT NULL
+  , writer VARCHAR2(20) REFERENCES JOIN_T(userID)
+  , createDate DATE DEFAULT(SYSDATE)
+  , updateDate DATE DEFAULT(SYSDATE)
+  , viewCnt NUMBER DEFAULT(0)
+);
+
+CREATE SEQUENCE BOARD_S NOCACHE;
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트', '게시판 글 작성 테스트 입니다.'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL
+						, 'N', '공지글 테스트', '공지글 작성 테스트 입니다.'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트2', '게시판 글 작성 테스트 입니다.2'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트3', '게시판 글 작성 테스트 입니다.3'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);					
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트4', '게시판 글 작성 테스트 입니다.4'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트5', '게시판 글 작성 테스트 입니다.5'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);							
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL
+						, 'N', '공지글 테스트2', '공지글 작성 테스트 입니다.2'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트6', '게시판 글 작성 테스트 입니다.6'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트7', '게시판 글 작성 테스트 입니다.7'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);						
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL
+						, 'N', '공지글 테스트3', '공지글 작성 테스트 입니다.3'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);					
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL
+						, 'N', '공지글 테스트4', '공지글 작성 테스트 입니다.4'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);					
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트8', '게시판 글 작성 테스트 입니다.8'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트9', '게시판 글 작성 테스트 입니다.9'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);						
+
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL
+						, 'N', '공지글 테스트5', '공지글 작성 테스트 입니다.5'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);	
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트10', '게시판 글 작성 테스트 입니다.10'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);					
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트11', '게시판 글 작성 테스트 입니다.11'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);
+					
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트12', '게시판 글 작성 테스트 입니다.12'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);	
+		
+INSERT INTO BOARD_T VALUES(BOARD_S.NEXTVAL 
+						, 'B', '게시글 테스트13', '게시판 글 작성 테스트 입니다.13'
+						, 'abcdef', DEFAULT, DEFAULT, DEFAULT);						
+					
+SELECT * FROM BOARD_T;
+
+DROP TABLE BOARD_T;
+DROP SEQUENCE BOARD_S;
