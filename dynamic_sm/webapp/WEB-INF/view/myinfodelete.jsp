@@ -25,11 +25,14 @@
 			<form action="${myinfoDeleteUrl }" method="post">
 				<div>
 					<label class="mt-2 col-3 col-form-control">아이디</label>
-					<input class="col-9 form-control" type="text" name="id" value="${sessionScope.user.userId }" disabled>
+					<input class="col-9 form-control" type="text" name="userId" value="${sessionScope.user.userId }" disabled>
 				</div>
 				<div>
 					<label class="mt-2 col-3 col-form-control">패스워드 재입력</label>
 					<input class="col-9 form-control" type="password" name="password" value="">
+					<c:if test="${not empty requestScope.error }">
+						<span style="color: red;">${requestScope.error }</span>
+					</c:if>
 				</div>
 				<div>
 					<button class="mt-3 btn btn-outline-danger" type="submit">탈퇴</button>

@@ -60,4 +60,31 @@ public class JoinService {
 		return null;
 		
 	}
+
+	public int dupIdChk(JoinDTO dto) {
+		int result = 0;
+		JoinDAO dao = new JoinDAO();
+		result = dao.dupIdChk(dto);
+		dao.close();
+		return result;
+	}
+
+	public int deleteUser(JoinDTO dto, JoinDTO data) {
+		int result = 0;
+		JoinDAO dao = new JoinDAO();
+		if(dto.getPassword().equals(data.getPassword())) {
+			result = dao.delete(data);
+			if(result == 1) {
+				dao.commit();
+				dao.close();
+				return result;
+			} else {
+				dao.rollback();
+				dao.close();
+				return result;
+			}
+		}
+		dao.close();
+		return result;
+	}
 }

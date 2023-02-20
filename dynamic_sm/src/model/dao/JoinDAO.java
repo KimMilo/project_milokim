@@ -36,4 +36,14 @@ public class JoinDAO {
 		return count;
 	}
 
+	public int dupIdChk(JoinDTO dto) {
+		int count = session.selectOne("joinMapper.selectId", dto);
+		return count;
+	}
+
+	public int delete(JoinDTO data) {
+		int count = session.delete("joinMapper.deleteUser", data);
+		return count;
+	}
+
 }

@@ -87,6 +87,14 @@
     <url-pattern>/myinfo</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>myinfoDeleteServlet</servlet-name>
+    <servlet-class>controller.MyinfoDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myinfoDeleteServlet</servlet-name>
+    <url-pattern>/myinfo/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>boardServlet</servlet-name>
     <servlet-class>controller.board.IndexController</servlet-class>
   </servlet>
@@ -130,6 +138,19 @@
     <error-code>404</error-code>
     <location>/WEB-INF/view/error/404.jsp</location>
   </error-page>
+  
+  <servlet-mapping>
+    <servlet-name>jsp</servlet-name>
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.jspx</url-pattern>
+   	<url-pattern>*.js</url-pattern>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.jpeg</url-pattern>
+    <url-pattern>*.svg</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>

@@ -15,4 +15,13 @@
 		     , email = #{email}
 		 WHERE userId = #{userId}
 	</update>
+	<select id="selectId" parameterType="model.dto.JoinDTO" resultType="int">
+		SELECT COUNT(*) FROM JOIN_T WHERE userId = #{userId}
+	</select>
+	<delete id="deleteUser" parameterType="model.dto.JoinDTO">
+		DELETE 
+		  FROM JOIN_T
+		 WHERE userId = #{userId}
+		   AND password = #{password}
+	</delete>
 </mapper>

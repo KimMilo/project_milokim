@@ -41,7 +41,7 @@
          			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo">수정</a>
         				</li>
         				<li class="nav-item">
-         			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo">탈퇴</a>
+         			 		<a class="nav-link" href="<%=request.getContextPath()%>/myinfo/delete">탈퇴</a>
         				</li>
           			</ul>
        			 </li>

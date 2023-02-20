@@ -24,8 +24,12 @@
 			<c:url var="loginUrl" value="/login" />
 			<form action="${joinUrl }" method="post" onsubmit="return validCheck(this);">
 		<div>
-			<label class="mt-2 col-3 col-form-label">아이디</label>
-			<input class="col-9 form-control" type="text" name="userId">
+			<div class="mt-2">
+				<label class="col-form-label">아이디</label>
+				<button class="btn btn-outline-secondary btn-sm" type="button" id="dupId">중복확인</button>
+				<span id="dupIdFeedback"></span>
+			</div>
+			<input class="col-9 form-control" type="text" name="userId" id="idCheck">
 			<c:if test="${not empty requestScope.error }">
 				<span style="color: red;">${requestScope.error }</span>
 			</c:if>
@@ -50,6 +54,31 @@
 	</section>
 </div>	
 <script>
+$('#dupId').click(checkDupId);
+function checkDupId(){
+	$.ajax({
+			url: "<%=request.getContextPath()%>/dupid"
+		  , type : "post"
+		  , async : false
+		  , data : {userId: $('#idCheck').val()}
+		  , success: function(result){
+			  if(result == "fail"){
+				  $('#dupIdFeedback').html("중복아이디가 있습니다. 다시 입력 해주세요.");
+				  $('#dupIdFeedback').css("color", "red");
+				  $('#dupIdFeedback').css("font-size", "11px");
+			  } else if(result == "ok"){
+				  $('#dupIdFeedback').html("중복된 아이디는 없습니다.");
+				  $('#dupIdFeedback').css("color", "green");
+				  $('#dupIdFeedback').css("font-size", "11px");
+			  }
+		  }
+		  , error: function(request, status, error){
+			  alert(request.status);
+		  }
+	});
+}
+
+
 window.onload = function() {
     form = document.forms[1];
     form.userId.addEventListener("blur", function(e) { requiredValid(e); });

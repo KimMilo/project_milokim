@@ -25,7 +25,7 @@
 			<form action="${myinfoUpdateUrl }" method="post" onsubmit="return validCheck(this);">
 				<div>
 					<label class="mt-2 col-3 col-form-control">아이디</label>
-					<input class="col-9 form-control" type="text" name="id" value="${sessionScope.user.userId }" disabled>
+					<input class="col-9 form-control" type="text" name="userId" value="${sessionScope.user.userId }" disabled>
 				</div>
 				<div>
 					<label class="mt-2 col-3 col-form-control">현재 패스워드</label>
