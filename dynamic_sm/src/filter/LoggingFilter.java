@@ -45,7 +45,7 @@ public class LoggingFilter implements Filter {
 				System.out.printf("[%s] - %s: %s\n", df.format(now), status, "정상응답");
 				break;
 			case 3: 
-				String location = response.getHeader("location"); // 302 리다이렉트가 되면 http response 의 header 내의 location 조회
+				String location = response.getHeader("location");
 				System.out.printf("[%s] - %s: %s -> %s\n", df.format(now), status, "리다이렉트 응답", location);
 				break;
 			case 4: 

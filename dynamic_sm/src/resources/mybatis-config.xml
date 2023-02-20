@@ -6,7 +6,6 @@
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
-      <!-- 커밋/롤백 JDBC면 해당 관리자(내가) 하겠다는 의미.  -->
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1"/>
@@ -16,14 +15,8 @@
     </environment>
   </environments>
   <mappers>
-  	<!-- src/main/java 다음 경로로 작성하면 됨. -->
     <mapper resource="resources/mapper/bookmarkMapper.xml" />
     <mapper resource="resources/mapper/joinMapper.xml" /> 
     <mapper resource="resources/mapper/boardMapper.xml" /> 
-    
-    <!-- [# Spring 에서는 *.xml로 사용 가능]
-    	mapper resource가 여러개일 경우(visitMapper, bookmarkMapper...) 
-    	매번 추가하기가 번거롭기 때문에 파일명을 *.xml을 사용하여 어떤 명칭이 와도 해당 경로에 있는
-    	.xml파일은 다 mapper 가능하게 기재하면 편함 -->
   </mappers>
 </configuration>

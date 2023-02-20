@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Paging {
 	
-	private Object page; // 방명록 (가장 상위인 Object로 만들어서 VisitDTO도 사용할 수 있게끔 한듯?
-	private List<Integer> pageList; //페이징번호
-	private int currentPage; // 현재페이지
-	private int lastPage; // 마지막페이지
-	private int pageLimit = 10;// 페이지보여지는 갯수(초기화 10)
-	private int listLimit = 5; //페이징번호 보여지는 갯수(초기화 5)
+	private Object page;
+	private List<Integer> pageList;
+	private int currentPage;
+	private int lastPage;
+	private int pageLimit = 10;
+	private int listLimit = 5;
 	
 	public Paging(Object page, int lastPage) {
 		this.page = page;
