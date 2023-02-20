@@ -47,10 +47,6 @@ public class BookmarkDAO {
 		return count;
 	}
 
-	/**
-	 * 데이터베이스에 저장할 데이터의 식별값을 생성하기 위한 메서드
-	 * @return id
-	 */
 	public int getId() {
 		int id = session.selectOne("bookmarkMapper.getId");
 		return id;

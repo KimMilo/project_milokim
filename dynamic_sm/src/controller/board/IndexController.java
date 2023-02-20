@@ -25,7 +25,6 @@ public class IndexController extends HttpServlet {
 			}
 		}
 		
-		// cnt 쿠키를 찾아서 cookie 에 저장
 		Cookie cookie = null;
 		Cookie[] cookies = req.getCookies();
 		for(Cookie c: cookies) {
@@ -33,19 +32,16 @@ public class IndexController extends HttpServlet {
 				cookie = c;
 			}
 		}
-		// cnt 파라메터를 찾아서 pageListLimit 에 저장
 		String cnt = req.getParameter("cnt");
 		int pageListLimit = 10;
 		if(cnt != null) {
 			if(!cnt.isEmpty()) {
 				pageListLimit = Integer.parseInt(cnt);
-				// 사용자 요청에 의해 cnt 가 변경된 경우 새로운 쿠키를 만들어서 사용자에게 제공
 				cookie = new Cookie("cnt", cnt);
 				cookie.setMaxAge(60*60*24*5);
 				resp.addCookie(cookie);	
 			}
 		} else {
-			// cnt 파라메터가 없으면 cnt cookie 에 저장된 cnt 쿠키를 pageListLimit 에 저장
 			if(cookie != null) {
 				pageListLimit = Integer.parseInt(cookie.getValue());
 			}

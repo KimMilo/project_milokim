@@ -10,7 +10,6 @@
 		 ORDER BY id
 	</select>
 	<select id="getId" resultType="int">
-		<!-- SELECT DECODE(MAX(id), NULL, 0, MAX(ID))+ 1 FROM BOOKMARK_T -->
 		SELECT NVL(MAX(id), 0) + 1 FROM BOOKMARK_T
 	</select>
 	<insert id="insert" parameterType="model.dto.BookmarkDTO">

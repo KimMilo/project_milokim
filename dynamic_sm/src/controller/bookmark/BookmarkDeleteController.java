@@ -18,13 +18,6 @@ public class BookmarkDeleteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		/* LoginCheckFilter로 대체
-	 	if(session.getAttribute("login") == null) {
-		resp.sendRedirect(req.getContextPath() + "/login");
-		return;
-		}
-		 */
-		
 		JoinDTO joinData = (JoinDTO)session.getAttribute("user");
 		
 		String id = req.getParameter("id");
