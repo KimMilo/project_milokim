@@ -29,27 +29,9 @@ public class JoinController extends HttpServlet  {
 		dto.setEmail(email);
 		
 		JoinService service = new JoinService();
-		/*
-		boolean result = service.add(dto);
-		if(result) {
-			resp.sendRedirect("./login");
-		} else {
-			//resp.sendRedirect("./join");
-			// sendRedirect는 join으로 가도 이전 입력 데이터는 저장 되지 않음.
-			
-			 실패했을 때 기존 고객 입력데이터를 복구하고 싶은 경우
-			   1. 기존 parameter를 활용할 수 있도록 join.jsp를 포워딩하고
-			   2. join.jsp에 복구하고 싶은 데이터에 value값을 ${param.해당input의 name}을 활용하여 지정하면 됨. 
-			   	  ex) email은 가입 에러나도 기존 값 복구하고자 할 경우 ${param.email}
-			    
-			req.getRequestDispatcher("/WEB-INF/view/join.jsp").forward(req, resp);
-			
-		}
-		*/
-		/* 좀더 세분화하여 에러메시지 띄우기 */
+
 		int result = service.add(dto);
 		switch(result) {
-		/* 절대 경로의 contextPath()-여기서는 /web01를 불러와서 절대경로화 하기. */
 			case 1:
 				resp.sendRedirect(req.getContextPath() + "/login"); break;
 			case -1:
