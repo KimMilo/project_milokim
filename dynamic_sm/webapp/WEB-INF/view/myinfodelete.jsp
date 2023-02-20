@@ -18,7 +18,7 @@
 <div class="container-fluid">
 	<section class="container-sm mt-5" style="width: 960px;">
   		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">개인정보 수정</button>
+    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">개인정보 탈퇴</button>
   		</div>
 		<div class="tab-content" id="nav-tabContent">
 			<c:url var="myinfoDeleteUrl" value="/myinfo/delete" />

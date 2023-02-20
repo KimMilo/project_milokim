@@ -16,17 +16,20 @@
 <body>
 <%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
 	<h2>게시판 상세</h2>
-	<c:url var="boardDetailUrl" value="/board/detail" />
+	<c:url var="boardDetailUrl" value="/board/detail"/>
 	<form action="${boardDetailUrl }" method="post">
 		<div>
 			<c:set var="data" value="${requestScope.data }" />
 			${data.id } | ${data.title } | ${data.writer } | ${data.updateDate } | ${data.viewCnt }
-			<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='/board/update'">수정</button>
+			<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update'">수정</button>
 			<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
-			<form action="./delete" id="deleteForm${data.id }">
-				<input type="hidden" name="id" value="${data.id }">
-			</form>
+			<hr>
+			${data.context }
+			<hr>
 		</div>
+	</form>
+	<form action="../board/delete" id="deleteForm${data.id }">
+		<input type="hidden" name="id" value="${data.id }">
 	</form>
 </body>
 </html>
