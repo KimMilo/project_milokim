@@ -76,7 +76,6 @@ public class BookmarkController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		HttpSession session = req.getSession();
 		
 		JoinDTO addData = (JoinDTO)session.getAttribute("user");

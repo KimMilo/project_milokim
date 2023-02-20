@@ -18,7 +18,7 @@
 <div class="container-fluid">
 	<section class="container-sm mt-5" style="width: 960px;">
   		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">로그인 화면</button>
+    		<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">회원가입 화면</button>
   		</div>
 		<div class="tab-content" id="nav-tabContent">
 			<c:url var="loginUrl" value="/login" />

@@ -34,4 +34,13 @@ public class BoardDAO {
 		return count;
 	}
 
+	public int update(BoardDTO dto) {
+		int data = session.update("boardMapper.update", dto);
+		return data;
+	}
+
+	public BoardDTO selectDetail(BoardDTO dto) {
+		BoardDTO data = session.selectOne("boardMapper.selectDetail", dto);
+		return data;
+	}
 }

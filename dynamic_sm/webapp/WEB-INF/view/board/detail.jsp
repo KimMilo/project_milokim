@@ -8,13 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 상세 페이지</title>
-<link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
-<script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">p" %>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
 </script>
 </head>
 <body>
-	<%@ include file="../module/top_nav.jsp" %>
+<%@ include file="/WEB-INF/view/module/top_nav.jsp" %>
 	<h2>게시판 상세</h2>
 	<c:url var="boardDetailUrl" value="/board/detail" />
 	<form action="${boardDetailUrl }" method="post">
@@ -23,7 +23,7 @@
 			${data.id } | ${data.title } | ${data.writer } | ${data.updateDate } | ${data.viewCnt }
 			<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='/board/update'">수정</button>
 			<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
-			<form action="/board/delete" id="deleteForm${data.id }">
+			<form action="./delete" id="deleteForm${data.id }">
 				<input type="hidden" name="id" value="${data.id }">
 			</form>
 		</div>

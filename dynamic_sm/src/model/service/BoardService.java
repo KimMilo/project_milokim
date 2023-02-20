@@ -26,6 +26,21 @@ public class BoardService {
 		dao.close();
 		return paging;
 	}
+
+	public BoardDTO detail(BoardDTO dto) {
+		BoardDAO dao = new BoardDAO();
+		dao.update(dto);
+		
+		BoardDTO data = dao.selectDetail(dto);
+		if(data != null) {
+			dao.commit();
+			dao.close();
+			return data;
+		}
+		dao.rollback();
+		dao.close();
+		return data;
+	}
 	
 
 }

@@ -18,4 +18,12 @@
 	<select id="selectTotalRowCount" resultType="int">
 		SELECT COUNT(*) FROM BOARD_T
 	</select>
+	<update id="update" parameterType="model.dto.BoardDTO">
+		UPDATE BOARD_T
+		   SET viewCnt = viewCnt + 1
+		 WHERE id = #{id}
+	</update>
+	<select id="selectDetail" parameterType="model.dto.BoardDTO" resultType="model.dto.BoardDTO">
+		SELECT * FROM BOARD_T WHERE id = #{id}
+	</select>
 </mapper>
