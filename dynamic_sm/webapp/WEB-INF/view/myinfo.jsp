@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보</title>
+<title>개인정보-수정</title>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
@@ -22,7 +22,7 @@
   		</div>
 		<div class="tab-content" id="nav-tabContent">
 			<c:url var="myinfoUpdateUrl" value="/myinfo" />
-			<form action="${myinfo }" method="post">
+			<form action="${myinfoUpdateUrl }" method="post" onsubmit="return validCheck(this);">
 				<div>
 					<label class="mt-2 col-3 col-form-control">아이디</label>
 					<input class="col-9 form-control" type="text" name="id" value="${sessionScope.user.userId }" disabled>
@@ -46,6 +46,57 @@
 			</form>
 		</div>
 	</section>
-</div>	
+</div>
+<script>
+window.onload = function() {
+    form = document.forms[1];
+
+    form.changePass.addEventListener("change", function(e) { lengthValid(e, 5, 16); });
+};
+function lengthValid(event, min, max) {
+    var inputElement = event.target;
+    if(inputElement.value.length < min || inputElement.value.length > max) {
+        errorMessage(inputElement, min + "~" + max + "자로 사용해야 합니다.");
+    } else {
+        validMessage(inputElement, "정상입니다.");
+    }
+}
+function errorMessage(element, message) {
+    var divError = document.createElement("div");
+    if(element.parentElement.lastElementChild.classList.contains("invalid-feedback") ||
+       element.parentElement.lastElementChild.classList.contains("valid-feedback")) {
+        divError = element.parentElement.lastElementChild;
+    }
+    divError.innerText = message;
+    divError.className = "invalid-feedback";
+    element.parentElement.append(divError); 
+    element.classList.remove("is-valid");
+    element.classList.add("is-invalid");
+
+}
+function validMessage(element, message) {
+    var divValid = document.createElement("div");
+    if(element.parentElement.lastElementChild.classList.contains("invalid-feedback") ||
+       element.parentElement.lastElementChild.classList.contains("valid-feedback")) {
+        divValid = element.parentElement.lastElementChild;
+    }
+    divValid.innerText = message;
+    divValid.className = "valid-feedback";
+    element.parentElement.append(divValid);
+    element.classList.remove("is-invalid");
+    element.classList.add("is-valid");
+
+}
+function validCheck(form) {
+	passwordCheckValid = form.changePass.classList.contains("is-valid") === true ? true : false;
+    
+    if(passwordCheckValid === true) {
+        return true;
+    } else {
+    	alert("정확하게 입력 후 수정해주세요~")
+        return false;
+    }
+}
+</script>	
 </body>
 </html>

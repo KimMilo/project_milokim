@@ -17,7 +17,10 @@
     <filter-name>loginCheckFilter</filter-name>
     <url-pattern>/bookmark</url-pattern>
     <url-pattern>/bookmark/*</url-pattern>
-    <url-pattern>/myinfo</url-pattern>
+    <url-pattern>/board/add</url-pattern>
+    <url-pattern>/board/update</url-pattern>
+    <url-pattern>/board/delete</url-pattern>
+    <url-pattern>/myinfo/*</url-pattern>
   </filter-mapping>
   <servlet>
     <servlet-name>mainServlet</servlet-name>
