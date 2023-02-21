@@ -22,19 +22,36 @@
 			<form action="${findIdUrl }" method="post">
 				<div>
 					<label class="mt-2 col-3 col-form-control">이메일 주소 입력</label>
-					<input class="col-9 form-control" type="email" name="email" value="">
+					<input class="col-9 form-control" id="emailCheck" type="email" name="email" value="">
 					<c:if test="${not empty requestScope.error }">
 						<span style="color: red;">${requestScope.error }</span>
 					</c:if>
 				</div>
 				<div>
-					<button class="mt-3 btn btn-outline-primary" type="submit">아이디 찾기</button>
+					<button class="mt-3 btn btn-outline-primary" id="find" type="submit">아이디 찾기</button>
 				</div>
 			</form>
 		</div>
 	</section>
 </div>
-	
-	
+<script>
+$('#find').click(findId);
+function findId(){
+	$.ajax({
+			url: "<%=request.getContextPath()%>/findId"
+		  , type : "post"
+		  , async : false
+		  , data : {email: $('#emailCheck').val()}
+		  , success: function(result){
+			  if(result == "ok"){
+				 alert("해당하는 이메일주소로 아이디를 보냈습니다. 확인바랍니다.")
+			  }
+		  }
+		  , error: function(request, status, error){
+			  alert(request.status);
+		  }
+	});
+}
+</script>
 </body>
 </html>
