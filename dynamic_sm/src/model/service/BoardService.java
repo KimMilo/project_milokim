@@ -44,7 +44,7 @@ public class BoardService {
 	}
 
 	public int insertBoard(BoardDTO dto) {
-		int result = 0;
+		int result = -1;
 		BoardDAO dao = new BoardDAO();
 		result = dao.insertBoard(dto);
 		if(result == 1) {
@@ -55,6 +55,26 @@ public class BoardService {
 		dao.rollback();
 		dao.close();
 		return result;
+	}
+
+	public int updateBoard(BoardDTO dto) {
+		int result = -1;
+		BoardDAO dao = new BoardDAO();
+		result = dao.updateBoard(dto);
+		if(result == 1) {
+			dao.commit();
+			dao.close();
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
+
+	public BoardDTO get(BoardDTO dto) {
+		BoardDAO dao = new BoardDAO();
+		BoardDTO data = dao.selectId(dto);
+		dao.close();
+		return data;
 	}
 	
 

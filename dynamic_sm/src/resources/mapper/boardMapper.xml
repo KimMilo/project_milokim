@@ -26,10 +26,25 @@
 	<select id="selectDetail" parameterType="model.dto.BoardDTO" resultType="model.dto.BoardDTO">
 		SELECT * FROM BOARD_T WHERE id = #{id}
 	</select>
-	<insert id="insert" parameterType="model.dto.BoardDTO">
+	<insert id="insertBoard" parameterType="model.dto.BoardDTO">
 		INSERT INTO BOARD_T 
 				VALUES((SELECT NVL(MAX(id), 0) + 1 FROM BOARD_T)
 					  , #{btype}, #{title}, #{context}, #{writer}
 					  , DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	<update id="updateBoard" parameterType="model.dto.BoardDTO">
+		UPDATE BOARD_T
+		   SET btype = #{btype}
+		     , title = #{title}
+		     , context = #{context}
+		     , updateDate = DEFAULT
+		 WHERE writer = #{writer}
+		   AND id = #{id}
+	</update>
+	<select id="selectId" parameterType="model.dto.BoardDTO" resultType="model.dto.BoardDTO">
+		SELECT *
+		  FROM BOARD_T
+		 WHERE id = #{id}
+		   AND writer = #{writer}
+	</select>
 </mapper>

@@ -46,7 +46,17 @@ public class BoardDAO {
 	}
 
 	public int insertBoard(BoardDTO dto) {
-		int count = session.insert("boardMapper.insert", dto);
+		int count = session.insert("boardMapper.insertBoard", dto);
 		return count;
+	}
+
+	public int updateBoard(BoardDTO dto) {
+		int count = session.update("boardMapper.updateBoard", dto);
+		return count;
+	}
+
+	public BoardDTO selectId(BoardDTO dto) {
+		BoardDTO data = session.selectOne("boardMapper.selectId", dto);
+		return data;
 	}
 }
