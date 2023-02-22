@@ -6,7 +6,6 @@ import java.util.Map;
 
 import model.dao.BoardDAO;
 import model.dto.BoardDTO;
-import model.dto.JoinDTO;
 import page.Paging;
 
 public class BoardService {

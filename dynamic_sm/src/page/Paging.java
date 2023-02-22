@@ -11,6 +11,7 @@ public class Paging {
 	private int lastPage;
 	private int pageLimit = 10;
 	private int listLimit = 5;
+	private int bnum;
 	
 	public Paging(Object page, int lastPage) {
 		this.page = page;
@@ -28,6 +29,14 @@ public class Paging {
 		this.currentPage = currentPage;
 		this.pageLimit = pageLimit;
 		this.listLimit = listLimit;
+	}
+	
+	public Paging(Object page, int currentPage, int lastPage, int pageLimit, int listLimit, int bnum) {
+		this(page, lastPage);
+		this.currentPage = currentPage;
+		this.pageLimit = pageLimit;
+		this.listLimit = listLimit;
+		this.bnum = bnum;
 	}
 	
 	public Object getPage() {
@@ -54,6 +63,16 @@ public class Paging {
 		}
 	}
 	
+	
+	
+	public int getBnum() {
+		return bnum;
+	}
+
+	public void setBnum(int bnum) {
+		this.bnum = bnum;
+	}
+
 	public int getCurrentPage() {
 		return currentPage;
 	}

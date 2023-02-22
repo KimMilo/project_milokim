@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import database.connect.OracleConnection;
 import model.dto.BoardDTO;
-import model.dto.JoinDTO;
+import model.dto.CommentDTO;
 
 public class BoardDAO {
 	
@@ -29,7 +29,7 @@ public class BoardDAO {
 		List<BoardDTO> dataList = session.selectList("boardMapper.selectPage", page);
 		return dataList;
 	}
-
+	
 	public int selectTotalRowCount() {
 		int count = session.selectOne("boardMapper.selectTotalRowCount");
 		return count;
@@ -64,4 +64,6 @@ public class BoardDAO {
 		int count = session.delete("boardMapper.delete", dto);
 		return count;
 	}
+
+
 }

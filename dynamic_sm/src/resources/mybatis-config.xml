@@ -8,7 +8,7 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1"/>
+        <property name="url" value="jdbc:oracle:thin:@210.183.45.232:1521/XEPDB1"/>
         <property name="username" value="web_admin"/>
         <property name="password" value="admin"/>
       </dataSource>
@@ -17,6 +17,7 @@
   <mappers>
     <mapper resource="resources/mapper/bookmarkMapper.xml" />
     <mapper resource="resources/mapper/joinMapper.xml" /> 
-    <mapper resource="resources/mapper/boardMapper.xml" /> 
+    <mapper resource="resources/mapper/boardMapper.xml" />
+    <mapper resource="resources/mapper/commentMapper.xml" />  
   </mappers>
 </configuration>

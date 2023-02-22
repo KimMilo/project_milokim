@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentMapper">
+	<select id="selectCmtPage" parameterType="map" resultType="model.dto.CommentDTO">
+		SELECT *
+		  FROM (SELECT ROWNUM N, tbl_1.*
+		          FROM (SELECT id, bnum, writer, context
+		                     , createDate, cLevel, cRef, cReply_SEQ
+		                  FROM COMMENT_T
+		                 WHERE bnum = #{bnum}
+		                 ORDER BY cRef DESC, cReply_SEQ ASC) tbl_1
+				)tbl_2
+		 WHERE N BETWEEN #{start} AND #{end}
+	</select>
+	<select id="selectTotalRowCount" resultType="int">
+		SELECT COUNT(*) FROM COMMENT_T
+	</select>
+
+</mapper>
