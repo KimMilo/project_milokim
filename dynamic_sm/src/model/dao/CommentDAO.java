@@ -53,4 +53,9 @@ public class CommentDAO {
 		return count;
 	}
 
+	public int updateComment(CommentDTO dto) {
+		int count = session.update("commentMapper.updateComment", dto);
+		return count;
+	}
+
 }

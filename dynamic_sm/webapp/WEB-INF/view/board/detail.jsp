@@ -63,7 +63,7 @@
 						 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
 					 </c:if>
 					 <c:if test="${sessionScope.user.userId eq c.writer }">
-						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+					 	<button class="updateCmt btn btn-outline-secondary btn-sm" type="button">수정</button>
 						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
 						<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
 							<input type="hidden" name="id" value="${c.id }">
@@ -72,6 +72,11 @@
 					 </c:if>
 				</div>
 				<form class="ms-1" action="<%=request.getContextPath()%>/board/comment/double" method="post">
+					<div class="my-1 d-flex justify-content-start">
+						<input type="hidden" name="id" value="${c.id }">
+					</div>
+				</form>
+				<form class="ms-1" action="<%=request.getContextPath()%>/board/comment/update" method="post">
 					<div class="my-1 d-flex justify-content-start">
 						<input type="hidden" name="id" value="${c.id }">
 					</div>
@@ -84,7 +89,7 @@
 							 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
 						 </c:if>
 						 <c:if test="${sessionScope.user.userId eq c.writer }">
-							<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+							<button class="updateCmt btn btn-outline-secondary btn-sm" type="button">수정</button>
 							<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
 							<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
 								<input type="hidden" name="id" value="${c.id }">
@@ -96,7 +101,12 @@
 						<div class="my-1 d-flex justify-content-start">
 							<input type="hidden" name="id" value="${c.id }">
 						</div>
-					</form>	
+					</form>
+					<form class="ms-1" action="<%=request.getContextPath()%>/board/comment/update" method="post" style="position:relative; left: 30px;">
+						<div class="my-1 d-flex justify-content-start">
+							<input type="hidden" name="id" value="${c.id }">
+						</div>
+					</form>		
 				</c:if>
 				<c:if test="${c.cLevel eq 2 }">
 					<div style="background-color: rgb(204,229,255);">
@@ -105,7 +115,7 @@
 							 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
 						 </c:if>
 						 <c:if test="${sessionScope.user.userId eq c.writer }">
-							<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+						 	<button class="updateCmt btn btn-outline-secondary btn-sm" type="button">수정</button>
 							<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
 							<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
 								<input type="hidden" name="id" value="${c.id }">
@@ -114,6 +124,11 @@
 					 	</c:if>
 					</div>
 					<form action="<%=request.getContextPath()%>/board/comment/double" method="post" style="position:relative; left: 60px;">
+						<div class="my-1 d-flex justify-content-start">
+							<input type="hidden" name="id" value="${c.id }">
+						</div>
+					</form>	
+					<form class="ms-1" action="<%=request.getContextPath()%>/board/comment/update" method="post" style="position:relative; left: 60px;">
 						<div class="my-1 d-flex justify-content-start">
 							<input type="hidden" name="id" value="${c.id }">
 						</div>
@@ -181,8 +196,38 @@ function addInput(element){
 	e.parentElement.nextElementSibling.firstElementChild.append(input);
 	e.parentElement.nextElementSibling.firstElementChild.append(input2);
 	e.parentElement.nextElementSibling.firstElementChild.append(button);
-
 }
+
+
+$(".updateCmt").on("click", updateInput);
+function updateInput(element){
+	var e = element.target;
+
+	if(e.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling != null){
+		e.parentElement.nextElementSibling.nextElementSibling.firstElementChild.ElementChildren.remove();
+	}
+	
+	var input = document.createElement("input");
+	input.type = "text";
+	input.name = "comment";
+	input.className = "form-control";
+	input.style.width = "420px";
+	
+	var input2 = document.createElement("input");
+	input2.type = "hidden";
+	input2.name = "bnum";
+	input2.value = "${requestScope.data.id }";
+	
+	var button = document.createElement("button");
+	button.className = "ms-2 btn btn-outline-danger btn-sm";
+	button.type = "submit";
+	button.innerText = "수정";
+	
+	e.parentElement.nextElementSibling.nextElementSibling.firstElementChild.append(input);
+	e.parentElement.nextElementSibling.nextElementSibling.firstElementChild.append(input2);
+	e.parentElement.nextElementSibling.nextElementSibling.firstElementChild.append(button);
+}
+
 </script>
 </body>
 </html>

@@ -48,4 +48,12 @@
 		 WHERE id = #{id}
 		   AND writer = #{writer}
 	</delete>
+	<update id="updateComment" parameterType="model.dto.CommentDTO">
+		UPDATE COMMENT_T
+		   SET context = #{context}
+		     , createDate = DEFAULT
+		 WHERE bnum = #{bnum}
+		   AND id = #{id}
+		   AND writer = #{writer}
+	</update>
 </mapper>

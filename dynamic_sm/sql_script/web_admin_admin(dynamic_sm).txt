@@ -157,3 +157,78 @@ SELECT * FROM BOARD_T;
 
 DROP TABLE BOARD_T;
 DROP SEQUENCE BOARD_S;
+
+
+-------------------------------------------------------------------------------
+
+DROP TABLE COMMENT_T;
+CREATE TABLE COMMENT_T(
+	id NUMBER PRIMARY KEY
+  , bnum NUMBER REFERENCES BOARD_T(id)
+  , writer VARCHAR2(50) REFERENCES JOIN_T(userId)
+  , context VARCHAR2(1000) NOT NULL
+  , createDate TIMESTAMP DEFAULT(CURRENT_TIMESTAMP)
+  , cLevel NUMBER DEFAULT(0)
+  , cRef NUMBER REFERENCES COMMENT_T(id)
+  , cReply_SEQ NUMBER DEFAULT(0)
+);
+
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트1', DEFAULT
+, DEFAULT
+, (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, DEFAULT
+);
+
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트2', DEFAULT
+, DEFAULT
+, (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, DEFAULT
+);
+
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트3', DEFAULT
+, DEFAULT
+, (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, DEFAULT
+);
+
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트4', DEFAULT
+, DEFAULT
+, (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, DEFAULT
+);
+
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트5', DEFAULT
+, DEFAULT
+, (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, DEFAULT
+);
+
+SELECT * FROM COMMENT_T;
+
+UPDATE COMMENT_T 
+   SET cReply_SEQ = cReply_SEQ + 1
+ WHERE cReply_SEQ > (SELECT cReply_SEQ FROM COMMENT_T WHERE id = 1)
+   AND cRef = (SELECT cRef FROM COMMENT_T WHERE id = 1)
+   AND bnum = 19;
+INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+, 19, 'abcdef', '댓글테스트', DEFAULT
+, (SELECT cLevel+1 FROM COMMENT_T WHERE id = 1)
+, (SELECT cRef FROM COMMENT_T WHERE id = 1)
+, (SELECT cReply_SEQ + 1 FROM COMMENT_T WHERE id = 1)
+);
+
+
+		SELECT *
+		  FROM (SELECT ROWNUM N, tbl_1.*
+		          FROM (SELECT id, bnum, writer, context
+		                     , createDate, cLevel, cRef, cReply_SEQ
+		                  FROM COMMENT_T
+		                 ORDER BY cRef DESC, cReply_SEQ ASC) tbl_1
+				)tbl_2;
+
+

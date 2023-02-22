@@ -57,4 +57,18 @@ public class CommentService {
 		dao.close();
 		return result;
 	}
+
+	public int updateComment(CommentDTO dto) {
+		int result = -1;
+		CommentDAO dao = new CommentDAO();
+		result = dao.updateComment(dto);
+		
+		if(result > 0) {
+			dao.commit();
+			dao.close();
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
 }
