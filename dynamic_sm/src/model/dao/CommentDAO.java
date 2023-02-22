@@ -47,5 +47,11 @@ public class CommentDAO {
 		int count = session.update("commentMapper.pushComment", dto);
 		return count;		
 	}
+	
+	public int pushInsertComment(CommentDTO dto) {
+		int count = session.insert("commentMapper.pushInsert", dto);
+		System.out.println(count);
+		return count;
+	}
 
 }

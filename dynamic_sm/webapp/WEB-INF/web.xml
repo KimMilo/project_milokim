@@ -152,6 +152,14 @@
     <url-pattern>/board/comment</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>commentDoubleServlet</servlet-name>
+    <servlet-class>controller.board.CommentDoubleController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>commentDoubleServlet</servlet-name>
+    <url-pattern>/board/comment/double</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>commentDeleteServlet</servlet-name>
     <servlet-class>controller.board.CommentDeleteController</servlet-class>
   </servlet>

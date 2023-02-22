@@ -26,14 +26,32 @@ public class CommentService {
 		dao.close();
 		return paging;
 	}
-
+	
 	public int insertComment(CommentDTO dto) {
 		int result = -1;
 		CommentDAO dao = new CommentDAO();
-		result = dao.pushComment(dto);
+
+		result = dao.insertComment(dto);
 		if(result == 1) {
-			result = dao.insertComment(dto);
-			if(result == 1) {
+			dao.commit();
+			dao.close();
+			return result;
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
+
+	public int pushInsertComment(CommentDTO dto) {
+		int result = -1;
+		CommentDAO dao = new CommentDAO();
+		result = dao.pushComment(dto);
+		System.out.println(result);
+		if(result > 0) {
+			dao.commit();
+			result = dao.pushInsertComment(dto);
+			System.out.println(result);
+			if(result > 0) {
 				dao.commit();
 				dao.close();
 				return result;

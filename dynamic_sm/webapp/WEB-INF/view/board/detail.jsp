@@ -53,24 +53,29 @@
 				<button class="ms-2 btn btn-outline-secondary" type="submit">댓글</button>
 			</div>
 		</form>
-		<div>
-			<c:forEach var="c" items="${requestScope.cmtPaging.page }">
-			<div class="mx-3 mt-2">
-				 ${c.writer } | ${c.context } | ${c.createDate }
-				 <c:if test="${not empty sessionScope.login}">
-					 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
-				 </c:if>
-				 <c:if test="${sessionScope.user.userId eq c.writer }">
-					<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
-					<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
-					<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+		<c:forEach var="c" items="${requestScope.cmtPaging.page }">
+			<div>
+				<div class="mx-3 mt-2">
+					 ${c.writer } | ${c.context } | ${c.createDate }
+					 <c:if test="${not empty sessionScope.login}">
+						 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
+					 </c:if>
+					 <c:if test="${sessionScope.user.userId eq c.writer }">
+						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
+						<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+							<input type="hidden" name="id" value="${c.id }">
+							<input type="hidden" name="bnum" value="${c.bnum }">
+						</form>
+					 </c:if>
+				</div>
+				<form action="<%=request.getContextPath()%>/board/comment/double" method="post">
+					<div class="my-1 d-flex justify-content-start">
 						<input type="hidden" name="id" value="${c.id }">
-						<input type="hidden" name="bnum" value="${c.bnum }">
-					</form>				 
-				 </c:if>
-			</div>
-			</c:forEach>
-		</div>	
+					</div>
+				</form>				 
+			</div>	
+		</c:forEach>
 		<div>
 			<ul class="mt-2 pagination">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
@@ -101,15 +106,10 @@
 $(".addCmt").on("click", addInput);
 function addInput(element){
 	var e = element.target;
-	if(e.parentElement.firstElementChild.nextElementSibling != null) {
-		e.parentElement.firstElementChild.nextElementSibling.remove();
+
+	if(e.parentElement.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling != null){
+		e.parentElement.nextElementSibling.firstElementChild.ElementChildren.remove();
 	}
-	var form = document.createElement("form");
-	form.action = "<%=request.getContextPath()%>/board/comment";
-	form.method = "post";
-	
-	var div = document.createElement("div");
-	div.className = "my-1 d-flex justify-content-start";
 	
 	var input = document.createElement("input");
 	input.type = "text";
@@ -127,12 +127,10 @@ function addInput(element){
 	button.type = "submit";
 	button.innerText = "저장";
 	
-	
-	e.parentElement.append(form);
-	form.append(div);
-	div.append(input);
-	div.append(input2);
-	div.append(button);
+	e.parentElement.nextElementSibling.firstElementChild.append(input);
+	e.parentElement.nextElementSibling.firstElementChild.append(input2);
+	e.parentElement.nextElementSibling.firstElementChild.append(button);
+
 }
 </script>
 </body>

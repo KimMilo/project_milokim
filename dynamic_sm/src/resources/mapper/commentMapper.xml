@@ -18,13 +18,10 @@
 		UPDATE COMMENT_T 
    		   SET cReply_SEQ = cReply_SEQ + 1
  		 WHERE cReply_SEQ > (SELECT cReply_SEQ FROM COMMENT_T WHERE id = #{id})
-   		   AND cRef = (SELECT cRef FROM COMMENT_T WHERE id = #{id});
+   		   AND cRef = (SELECT cRef FROM COMMENT_T WHERE id = #{id})
    		   AND bnum = #{bnum}
 	</update>
-	<select id="selectTotalRowCount" resultType="int">
-		SELECT COUNT(*) FROM COMMENT_T
-	</select>
-	<insert id="insert" parameterType="model.dto.CommentDTO">
+	<insert id="pushInsert" parameterType="model.dto.CommentDTO">
 		INSERT INTO COMMENT_T
 				VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 				      , #{bnum}, #{writer}, #{context}, DEFAULT
@@ -32,6 +29,19 @@
 				      , (SELECT cRef FROM COMMENT_T WHERE id = #{id})
 				      , (SELECT cReply_SEQ + 1 FROM COMMENT_T WHERE id = #{id}))
 	</insert>
+	<insert id="insert" parameterType="model.dto.CommentDTO">
+		INSERT INTO COMMENT_T 
+				VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+					  , #{bnum}, #{writer}, #{context}, DEFAULT
+					  , DEFAULT
+					  , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+  					  , DEFAULT
+				)
+	</insert>
+	<select id="selectTotalRowCount" resultType="int">
+		SELECT COUNT(*) FROM COMMENT_T
+	</select>
+
 	<delete id="delete" parameterType="model.dto.CommentDTO">
 		DELETE
 		  FROM COMMENT_T
