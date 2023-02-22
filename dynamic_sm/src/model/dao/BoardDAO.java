@@ -59,4 +59,9 @@ public class BoardDAO {
 		BoardDTO data = session.selectOne("boardMapper.selectId", dto);
 		return data;
 	}
+
+	public int delete(BoardDTO dto) {
+		int count = session.delete("boardMapper.delete", dto);
+		return count;
+	}
 }

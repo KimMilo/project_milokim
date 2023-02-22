@@ -47,4 +47,10 @@
 		 WHERE id = #{id}
 		   AND writer = #{writer}
 	</select>
+	<delete id="delete" parameterType="model.dto.BoardDTO">
+		DELETE 
+		  FROM BOARD_T
+		 WHERE id = #{id}
+		   AND writer = #{writer}
+	</delete>
 </mapper>

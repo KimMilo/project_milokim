@@ -57,7 +57,7 @@ public class UpdateController extends HttpServlet {
 		if(result > 0) {
 			resp.sendRedirect(req.getContextPath() + "/board");
 		} else {
-			req.setAttribute("error", "게시글 작성 중 에러가 발생하였습니다. 다시 시도 바랍니다.");
+			req.setAttribute("error", "게시글 수정 중 에러가 발생하였습니다. 다시 시도 바랍니다.");
 			req.getRequestDispatcher("/WEB-INF/view/board/update.jsp").forward(req, resp);
 		}
 	}

@@ -76,6 +76,21 @@ public class BoardService {
 		dao.close();
 		return data;
 	}
+
+	public int deleteBoard(BoardDTO dto) {
+		int result = -1;
+		BoardDAO dao = new BoardDAO();
+		result = dao.delete(dto);
+		
+		if(result == 1) {
+			dao.commit();
+			dao.close();
+			return result;
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
 	
 
 }

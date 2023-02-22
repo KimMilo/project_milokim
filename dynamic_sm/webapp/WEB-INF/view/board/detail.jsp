@@ -29,6 +29,9 @@
 						${data.id } | ${data.title } | ${data.writer } | ${data.updateDate } | ${data.viewCnt }
 						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
 						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
+						<c:if test="${not empty requestScope.error }">
+							<span style="color: red;">requestScope.error</span>
+						</c:if>
 					</div>
 					<hr>
 					<div class="mx-3 mt-2" style="white-space: pre-line;">
@@ -36,7 +39,7 @@
 					</div>
 				</div>
 			</form>
-			<form action="<%=request.getContextPath() %>/board/delete" id="deleteForm${data.id }">
+			<form action="<%=request.getContextPath() %>/board/delete" id="deleteForm${data.id }" method="post">
 				<input type="hidden" name="id" value="${data.id }">
 			</form>
 		</div>
