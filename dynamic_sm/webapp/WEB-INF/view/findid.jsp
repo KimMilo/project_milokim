@@ -26,31 +26,22 @@
 					<c:if test="${not empty requestScope.error }">
 						<span style="color: red;">${requestScope.error }</span>
 					</c:if>
+					<c:if test="${not empty requestScope.success }">
+						<span style="color: green;">${requestScope.success }</span>
+					</c:if>
 				</div>
-				<div>
+				<div class="d-flex justify-content-between">
 					<button class="mt-3 btn btn-outline-primary" id="find" type="submit">아이디 찾기</button>
+					<button class="mt-3 btn btn-outline-primary" id="loginBtn" type="button">로그인</button>
 				</div>
 			</form>
 		</div>
 	</section>
 </div>
 <script>
-$('#find').click(findId);
-function findId(){
-	$.ajax({
-			url: "<%=request.getContextPath()%>/findId"
-		  , type : "post"
-		  , async : false
-		  , data : {email: $('#emailCheck').val()}
-		  , success: function(result){
-			  if(result == "ok"){
-				 alert("해당하는 이메일주소로 아이디를 보냈습니다. 확인바랍니다.")
-			  }
-		  }
-		  , error: function(request, status, error){
-			  alert(request.status);
-		  }
-	});
+$("#loginBtn").on("click", login)
+function login(){
+	location.href="<%=request.getContextPath()%>/login";
 }
 </script>
 </body>

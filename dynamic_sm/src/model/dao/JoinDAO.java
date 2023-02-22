@@ -46,8 +46,8 @@ public class JoinDAO {
 		return count;
 	}
 
-	public int selectUserEmail(JoinDTO data) {
-		int count = session.selectOne("joinMapper.selectUserEmail", data);
+	public int selectUserEmail(JoinDTO dto) {
+		int count = session.selectOne("joinMapper.selectUserEmail", dto);
 		return count;
 	}
 

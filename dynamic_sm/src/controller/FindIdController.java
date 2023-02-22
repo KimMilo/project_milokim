@@ -45,21 +45,16 @@ public class FindIdController extends HttpServlet {
 		dto.setEmail(email);
 		
 		JoinService service = new JoinService();
-		HttpSession session = request.getSession();
-		JoinDTO data = (JoinDTO)session.getAttribute("user");
 		
-		int result = service.getUserEmail(dto, data);
+		int result = service.getUserEmail(dto);
+		System.out.println(result);
 		if(result > 0) {
-			PrintWriter out = response.getWriter();
-			out.append("ok");
-			out.flush();
-			out.close();
-			
+			request.setAttribute("success", "입력하신 이메일 주소로 해당 아이디를 보냈습니다. 다시 로그인해주세요.");
+			request.getRequestDispatcher("/WEB-INF/view/findid.jsp").forward(request, response);
 		} else {
 			request.setAttribute("error", "입력하신 이메일의 아이디는 존재하지 않습니다.");
 			request.getRequestDispatcher("/WEB-INF/view/findid.jsp").forward(request, response);
 		}
-		
 	}
 
 }

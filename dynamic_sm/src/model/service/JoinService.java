@@ -88,13 +88,10 @@ public class JoinService {
 		return result;
 	}
 
-	public int getUserEmail(JoinDTO dto, JoinDTO data) {
+	public int getUserEmail(JoinDTO dto) {
 		int result = 0;
 		JoinDAO dao = new JoinDAO();
-		if(dto.getEmail().equals(data.getEmail())) {
-			result = dao.selectUserEmail(data);
-			dao.close();
-		}
+		result = dao.selectUserEmail(dto);
 		dao.close();
 		return result;
 	}
