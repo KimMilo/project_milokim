@@ -6,6 +6,7 @@ import java.util.Map;
 
 import model.dao.BoardDAO;
 import model.dto.BoardDTO;
+import model.dto.JoinDTO;
 import page.Paging;
 
 public class BoardService {
@@ -40,6 +41,20 @@ public class BoardService {
 		dao.rollback();
 		dao.close();
 		return data;
+	}
+
+	public int insertBoard(BoardDTO dto) {
+		int result = 0;
+		BoardDAO dao = new BoardDAO();
+		result = dao.insertBoard(dto);
+		if(result == 1) {
+			dao.commit();
+			dao.close();
+			return result;
+		}
+		dao.rollback();
+		dao.close();
+		return result;
 	}
 	
 

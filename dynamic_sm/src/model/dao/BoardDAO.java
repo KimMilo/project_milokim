@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import database.connect.OracleConnection;
 import model.dto.BoardDTO;
+import model.dto.JoinDTO;
 
 public class BoardDAO {
 	
@@ -42,5 +43,10 @@ public class BoardDAO {
 	public BoardDTO selectDetail(BoardDTO dto) {
 		BoardDTO data = session.selectOne("boardMapper.selectDetail", dto);
 		return data;
+	}
+
+	public int insertBoard(BoardDTO dto) {
+		int count = session.insert("boardMapper.insert", dto);
+		return count;
 	}
 }

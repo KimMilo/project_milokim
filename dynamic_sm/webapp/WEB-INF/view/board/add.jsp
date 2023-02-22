@@ -23,15 +23,27 @@
 				<input class="col-9 form-control" type="text" name="userId" value="${sessionScope.user.userId }" disabled>
 			</div>
 			<div>
+				<label class="mt-2 col-3 col-form-label">타입</label>
+				<select class="form-select" aria-label="Default select example" name="btype">
+					<option value="N">공지게시글</option>
+					<option value="B" selected>일반게시글</option>
+				</select>
+			</div>
+			<div>
 				<label class="mt-2 col-3 col-form-label">제목</label>
-				<input class="col-9 form-control" type="password" name="password">
+				<input class="col-9 form-control" type="text" name="title">
 			</div>
 			<div>
 				<label class="mt-2 col-3 col-form-label">내용</label>
-				<textarea class="form-control" rows="25"></textarea>
+				<textarea class="form-control" rows="25" name="context"></textarea>
 			</div>
 			<div class="mt-3 d-grid">
 				<button class="btn btn-outline-success" type="submit">작성</button>
+			</div>
+			<div>
+				<c:if test="${not empty requestScope.error }">
+					<span style="color: red;">${requestScope.error }</span>
+				</c:if>
 			</div>
   		</form>
 	</section>

@@ -31,7 +31,7 @@
 						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
 					</div>
 					<hr>
-					<div class="mx-3 mt-2">
+					<div class="mx-3 mt-2" style="white-space: pre-line;">
 						${data.context }				
 					</div>
 				</div>
