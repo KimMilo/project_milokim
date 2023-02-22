@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import model.dao.BoardDAO;
+import model.dao.CommentDAO;
 import model.dto.BoardDTO;
+import model.dto.CommentDTO;
 import page.Paging;
 
 public class BoardService {
@@ -85,6 +87,19 @@ public class BoardService {
 			dao.commit();
 			dao.close();
 			return result;
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
+
+	public int deleteComment(CommentDTO dto) {
+		int result = -1;
+		CommentDAO dao = new CommentDAO();
+		result = dao.deleteComment(dto);
+		if(result == 1) {
+			dao.commit();
+			dao.close();
 		}
 		dao.rollback();
 		dao.close();

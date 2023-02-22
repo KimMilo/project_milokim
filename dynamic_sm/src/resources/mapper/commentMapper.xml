@@ -17,5 +17,18 @@
 	<select id="selectTotalRowCount" resultType="int">
 		SELECT COUNT(*) FROM COMMENT_T
 	</select>
-
+	<insert id="insert" parameterType="model.dto.CommentDTO">
+		INSERT INTO COMMENT_T
+				VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+				      , #{bnum}, #{writer}, #{context}, DEFAULT
+				      , DEFAULT
+				      , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
+				      , DEFAULT)
+	</insert>
+	<delete id="delete" parameterType="model.dto.CommentDTO">
+		DELETE
+		  FROM COMMENT_T
+		 WHERE id = #{id}
+		   AND writer = #{writer}
+	</delete>
 </mapper>

@@ -29,6 +29,7 @@
 						${data.id } | ${data.title } | ${data.writer } | ${data.updateDate } | ${data.viewCnt }
 						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
 						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
+						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath() %>/board'">목록으로</button>
 						<c:if test="${not empty requestScope.error }">
 							<span style="color: red;">requestScope.error</span>
 						</c:if>
@@ -47,6 +48,7 @@
 		<br>
 		<form action="<%=request.getContextPath() %>/board/comment" method="post">
 			<div class="d-flex justify-content-start">
+				<input type="hidden" name="bnum" value="${requestScope.data.id }"> 
 				<input class="form-control" type="text" name="comment" style="width: 500px;">
 				<button class="ms-2 btn btn-outline-secondary" type="submit">댓글</button>
 			</div>
@@ -55,13 +57,21 @@
 			<c:forEach var="c" items="${requestScope.cmtPaging.page }">
 			<div class="mx-3 mt-2">
 				 ${c.writer } | ${c.context } | ${c.createDate }
-				<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
-				<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
-				<c:if test="${not empty requestScope.error }">
-					<span style="color: red;">requestScope.error</span>
-				</c:if>
+				 <c:if test="${not empty sessionScope.login}">
+					 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
+				 </c:if>
+				 <c:if test="${sessionScope.user.userId eq c.writer }">
+					<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+					<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
+				 </c:if>
+				 <div class="addCmtLine">
+				 </div>
 			</div>
 			</c:forEach>
+			<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+				<input type="hidden" name="id" value="${c.id }">
+				<input type="hidden" name="bnum" value="${c.bnum }">
+			</form>				 
 		</div>	
 		<div>
 			<ul class="mt-2 pagination">
@@ -89,5 +99,13 @@
 		</div>
 	</section>
 </div>
+<script>
+function addCmt(element) {
+    let e = $(element);
+    let tagText = '<input type="text">';
+    let addCmtForm = $(tagText);
+    e.after(addCmtForm);
+function 
+</script>
 </body>
 </html>

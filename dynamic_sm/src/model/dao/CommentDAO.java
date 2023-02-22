@@ -33,4 +33,14 @@ public class CommentDAO {
 		return count;
 	}
 
+	public int insertComment(CommentDTO dto) {
+		int count = session.insert("commentMapper.insert", dto);
+		return count;
+	}
+
+	public int deleteComment(CommentDTO dto) {
+		int count = session.delete("commentMapper.delete", dto);
+		return count;
+	}
+
 }

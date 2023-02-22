@@ -26,4 +26,17 @@ public class CommentService {
 		dao.close();
 		return paging;
 	}
+
+	public int insertComment(CommentDTO dto) {
+		int result = -1;
+		CommentDAO dao = new CommentDAO();
+		result = dao.insertComment(dto);
+		if(result == 1) {
+			dao.commit();
+			dao.close();
+		}
+		dao.rollback();
+		dao.close();
+		return result;
+	}
 }

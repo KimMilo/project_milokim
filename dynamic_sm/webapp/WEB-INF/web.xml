@@ -21,6 +21,7 @@
     <url-pattern>/board/update</url-pattern>
     <url-pattern>/board/delete</url-pattern>
     <url-pattern>/myinfo/*</url-pattern>
+    <url-pattern>/board/comment</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -142,6 +143,23 @@
     <servlet-name>boardDeleteServlet</servlet-name>
     <url-pattern>/board/delete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>commentAddServlet</servlet-name>
+    <servlet-class>controller.board.CommentAddController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>commentAddServlet</servlet-name>
+    <url-pattern>/board/comment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>commentDeleteServlet</servlet-name>
+    <servlet-class>controller.board.CommentDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>commentDeleteServlet</servlet-name>
+    <url-pattern>/board/comment/delete</url-pattern>
+  </servlet-mapping>
+ 
 
   <error-page>
     <error-code>404</error-code>
