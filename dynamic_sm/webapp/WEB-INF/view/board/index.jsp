@@ -15,16 +15,12 @@
 </head>
 	<style type="text/css">
 			th, td {
-				border-color: black;
-				border-style: soild;
-				border-width: 1px;
 				text-align: center;
-				border-collapse: collapse;
 			}
 		
 			th {
 				background-color: gray;
-				color: white;
+				color: ;
 			}
 
 	</style>
@@ -36,7 +32,8 @@
 	</div>
 	<div class="tab-content" id="nav-tabContent">
 		<c:url var="boardUrl" value="/board" />
-		<div class="my-2">
+		<div class="my-2 d-flex justify-content-between">
+			<div>
 			<form action="${boardUrl }">
 				<select name="cnt" onchange="submit();">
 					<option value="2" ${requestScope.paging.pageLimit eq 2 ? "selected" : ""}>2 개</option>
@@ -45,9 +42,15 @@
 					</c:forEach>
 				</select>
 			</form>
+			</div>
+			<div class="my-2">
+				<form action="<%=request.getContextPath()%>/board/add">
+					<button class="btn btn-outline-secondary" type="submit">글쓰기</button>
+				</form>
+			</div>
 		</div>
 	</div>
-	<table style="border-style: solid; border-width: 1px; border-collapse: collapse;">
+	<table class="table">
 		<colgroup>
 			<col style="width: 150px;">
 			<col style="width: 350px;">
@@ -57,21 +60,32 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
+				<th scope="col">조회수</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="table-group-divider">
 			<c:forEach var="data" items="${requestScope.paging.page }">
 			<tr>
-				<td>${data.id }</td>
-				<td><a href="${boardUrl }/detail?id=${data.id }">${data.title }</a></td>
-				<td>${data.writer }</td>
-				<td>${data.createDate }</td>
-				<td>${data.viewCnt }</td>
+				<c:choose>
+					<c:when test="${data.btype eq 'N' }">
+						<th scope="row" style="background-color: rgb(255,204,229); color: red;">${data.id }</th>
+						<td style="background-color: rgb(255,204,229); color: red;"><a style="color: red;" href="${boardUrl }/detail?id=${data.id }">${data.title }</a></td>
+						<td style="background-color: rgb(255,204,229); color: red;">${data.writer }</td>
+						<td style="background-color: rgb(255,204,229); color: red;">${data.createDate }</td>
+						<td style="background-color: rgb(255,204,229); color: red;">${data.viewCnt }</td>
+					</c:when>
+					<c:otherwise>
+						<th style="color: black;" scope="row">${data.id }</th>
+						<td><a style="color: black;" href="${boardUrl }/detail?id=${data.id }">${data.title }</a></td>
+						<td>${data.writer }</td>
+						<td>${data.createDate }</td>
+						<td>${data.viewCnt }</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			</c:forEach>
 		</tbody>
