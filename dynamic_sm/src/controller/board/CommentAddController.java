@@ -34,7 +34,6 @@ public class CommentAddController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String comment = req.getParameter("comment");
 		String bnum = req.getParameter("bnum");
-		System.out.println(bnum);
 				
 		HttpSession session = req.getSession();
 		JoinDTO data = (JoinDTO)session.getAttribute("user");

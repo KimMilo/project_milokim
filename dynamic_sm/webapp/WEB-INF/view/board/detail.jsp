@@ -63,15 +63,13 @@
 				 <c:if test="${sessionScope.user.userId eq c.writer }">
 					<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
 					<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
+					<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+						<input type="hidden" name="id" value="${c.id }">
+						<input type="hidden" name="bnum" value="${c.bnum }">
+					</form>				 
 				 </c:if>
-				 <div class="addCmtLine">
-				 </div>
 			</div>
 			</c:forEach>
-			<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
-				<input type="hidden" name="id" value="${c.id }">
-				<input type="hidden" name="bnum" value="${c.bnum }">
-			</form>				 
 		</div>	
 		<div>
 			<ul class="mt-2 pagination">
@@ -100,12 +98,42 @@
 	</section>
 </div>
 <script>
-function addCmt(element) {
-    let e = $(element);
-    let tagText = '<input type="text">';
-    let addCmtForm = $(tagText);
-    e.after(addCmtForm);
-function 
+$(".addCmt").on("click", addInput);
+function addInput(element){
+	var e = element.target;
+	if(e.parentElement.firstElementChild.nextElementSibling != null) {
+		e.parentElement.firstElementChild.nextElementSibling.remove();
+	}
+	var form = document.createElement("form");
+	form.action = "<%=request.getContextPath()%>/board/comment";
+	form.method = "post";
+	
+	var div = document.createElement("div");
+	div.className = "my-1 d-flex justify-content-start";
+	
+	var input = document.createElement("input");
+	input.type = "text";
+	input.name = "comment";
+	input.className = "form-control";
+	input.style.width = "420px";
+	
+	var input2 = document.createElement("input");
+	input2.type = "hidden";
+	input2.name = "bnum";
+	input2.value = "${requestScope.data.id }";
+	
+	var button = document.createElement("button");
+	button.className = "ms-2 btn btn-outline-primary btn-sm";
+	button.type = "submit";
+	button.innerText = "저장";
+	
+	
+	e.parentElement.append(form);
+	form.append(div);
+	div.append(input);
+	div.append(input2);
+	div.append(button);
+}
 </script>
 </body>
 </html>

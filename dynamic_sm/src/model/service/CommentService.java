@@ -30,10 +30,17 @@ public class CommentService {
 	public int insertComment(CommentDTO dto) {
 		int result = -1;
 		CommentDAO dao = new CommentDAO();
-		result = dao.insertComment(dto);
+		result = dao.pushComment(dto);
 		if(result == 1) {
-			dao.commit();
+			result = dao.insertComment(dto);
+			if(result == 1) {
+				dao.commit();
+				dao.close();
+				return result;
+			}
+			dao.rollback();
 			dao.close();
+			return result;
 		}
 		dao.rollback();
 		dao.close();

@@ -14,6 +14,13 @@
 				)tbl_2
 		 WHERE N BETWEEN #{start} AND #{end}
 	</select>
+	<update id="pushComment" parameterType="model.dto.CommentDTO">
+		UPDATE COMMENT_T 
+   		   SET cReply_SEQ = cReply_SEQ + 1
+ 		 WHERE cReply_SEQ > (SELECT cReply_SEQ FROM COMMENT_T WHERE id = #{id})
+   		   AND cRef = (SELECT cRef FROM COMMENT_T WHERE id = #{id});
+   		   AND bnum = #{bnum}
+	</update>
 	<select id="selectTotalRowCount" resultType="int">
 		SELECT COUNT(*) FROM COMMENT_T
 	</select>
@@ -21,9 +28,9 @@
 		INSERT INTO COMMENT_T
 				VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 				      , #{bnum}, #{writer}, #{context}, DEFAULT
-				      , DEFAULT
-				      , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-				      , DEFAULT)
+				      , (SELECT cLevel+1 FROM COMMENT_T WHERE id = #{id})
+				      , (SELECT cRef FROM COMMENT_T WHERE id = #{id})
+				      , (SELECT cReply_SEQ + 1 FROM COMMENT_T WHERE id = #{id}))
 	</insert>
 	<delete id="delete" parameterType="model.dto.CommentDTO">
 		DELETE
