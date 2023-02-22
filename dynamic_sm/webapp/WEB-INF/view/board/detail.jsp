@@ -43,7 +43,30 @@
 				<input type="hidden" name="id" value="${data.id }">
 			</form>
 		</div>
+		<br>
+		<br>
+		<form>
+			<div class="d-flex justify-content-start">
+				<input class="form-control" type="text" name="comment" style="width: 500px;">
+				<button class="ms-2 btn btn-outline-secondary" type="button" id="commentBtn">댓글</button>	
+			</div>
+			<div class="commentLine">
+			
+			</div>
+		</form>
 	</section>
 </div>
+<script>
+
+$("#commentBtn").on("click", addComment);
+function addComment(element) {
+    let e = $(element);
+    let tagText = $(element).value;
+
+    let addressForm = $(tagText);
+    addressForm.find("input, select").on("change", function(e) { saveButtonEnable(e, element.nextElementSibling); });
+    e.parent().before(addressForm);
+}
+</script>
 </body>
 </html>
