@@ -37,7 +37,7 @@ public class DetailController extends HttpServlet {
 			}
 		}
 		
-		int pageListLimit = 3;
+		int pageListLimit = 10;
 		
 		CommentService cService = new CommentService();
 		Paging paging = cService.getPage(pageNumber, pageListLimit, Integer.parseInt(id));		

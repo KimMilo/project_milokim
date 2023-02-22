@@ -50,7 +50,6 @@ public class CommentDAO {
 	
 	public int pushInsertComment(CommentDTO dto) {
 		int count = session.insert("commentMapper.pushInsert", dto);
-		System.out.println(count);
 		return count;
 	}
 

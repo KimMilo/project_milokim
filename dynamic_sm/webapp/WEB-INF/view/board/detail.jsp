@@ -35,7 +35,7 @@
 						</c:if>
 					</div>
 					<hr>
-					<div class="mx-3 mt-2" style="white-space: pre-line;">
+					<div class="mx-3 mt-2 mb-6" style="white-space: pre-line;">
 						${data.context }				
 					</div>
 				</div>
@@ -47,15 +47,17 @@
 		<br>
 		<br>
 		<form action="<%=request.getContextPath() %>/board/comment" method="post">
-			<div class="d-flex justify-content-start">
+			<div class="my-3 d-flex justify-content-start">
 				<input type="hidden" name="bnum" value="${requestScope.data.id }"> 
-				<input class="form-control" type="text" name="comment" style="width: 500px;">
+				<input class="form-control" type="text" name="comment" style="width: 620px;">
 				<button class="ms-2 btn btn-outline-secondary" type="submit">댓글</button>
 			</div>
 		</form>
 		<c:forEach var="c" items="${requestScope.cmtPaging.page }">
 			<div>
 				<div class="mx-3 mt-2">
+				<c:if test="${c.cLevel eq 0  }">
+				<div style="background-color: rgb(255,204,204);">
 					 ${c.writer } | ${c.context } | ${c.createDate }
 					 <c:if test="${not empty sessionScope.login}">
 						 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
@@ -69,11 +71,60 @@
 						</form>
 					 </c:if>
 				</div>
-				<form action="<%=request.getContextPath()%>/board/comment/double" method="post">
+				<form class="ms-1" action="<%=request.getContextPath()%>/board/comment/double" method="post">
 					<div class="my-1 d-flex justify-content-start">
 						<input type="hidden" name="id" value="${c.id }">
 					</div>
-				</form>				 
+				</form>	
+				</c:if>
+				<c:if test="${c.cLevel eq 1 }">	
+					<div style="background-color: rgb(204,255,204);">
+						└─ ${c.writer } | ${c.context } | ${c.createDate }
+						 <c:if test="${not empty sessionScope.login}">
+							 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
+						 </c:if>
+						 <c:if test="${sessionScope.user.userId eq c.writer }">
+							<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+							<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
+							<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+								<input type="hidden" name="id" value="${c.id }">
+								<input type="hidden" name="bnum" value="${c.bnum }">
+							</form>
+						 </c:if>
+					</div>		
+					<form action="<%=request.getContextPath()%>/board/comment/double" method="post" style="position:relative; left: 30px;">
+						<div class="my-1 d-flex justify-content-start">
+							<input type="hidden" name="id" value="${c.id }">
+						</div>
+					</form>	
+				</c:if>
+				<c:if test="${c.cLevel eq 2 }">
+					<div style="background-color: rgb(204,229,255);">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ ${c.writer } | ${c.context } | ${c.createDate }
+					 	<c:if test="${not empty sessionScope.login}">
+							 <button class="addCmt ms-2 btn btn-outline-secondary btn-sm" type="submit">댓글</button>
+						 </c:if>
+						 <c:if test="${sessionScope.user.userId eq c.writer }">
+							<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+							<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${c.id }">삭제</button>
+							<form action="<%=request.getContextPath() %>/board/comment/delete" id="deleteForm${c.id }" method="post">
+								<input type="hidden" name="id" value="${c.id }">
+								<input type="hidden" name="bnum" value="${c.bnum }">
+							</form>
+					 	</c:if>
+					</div>
+					<form action="<%=request.getContextPath()%>/board/comment/double" method="post" style="position:relative; left: 60px;">
+						<div class="my-1 d-flex justify-content-start">
+							<input type="hidden" name="id" value="${c.id }">
+						</div>
+					</form>	
+				</c:if>
+				<c:if test="${c.cLevel gt 2 }">
+					<div style="background-color: rgb(224,224,224);">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ ${c.writer } | ${c.context } | ${c.createDate }
+					</div>
+				</c:if>
+				</div>			 
 			</div>	
 		</c:forEach>
 		<div>
