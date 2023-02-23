@@ -1,3 +1,5 @@
+# JOIN_T
+
 CREATE TABLE JOIN_T(
 	USERID VARCHAR2(20) PRIMARY KEY
   , PASSWORD VARCHAR2(20) NOT NULL
@@ -5,12 +7,17 @@ CREATE TABLE JOIN_T(
 );
 
 SELECT * FROM JOIN_T;
+DELETE FROM JOIN_T WHERE userid = 'test1' and password = 'test1';
 
 DROP TABLE JOIN_T;
 
+---------------------------------------------------------------------------------
+
+# BOOKMARK_T
+
 CREATE TABLE BOOKMARK_T (
     id NUMBER CONSTRAINT BOOKMARK_T_ID_PK PRIMARY KEY
-  , userId VARCHAR2(20) REFERENCES JOIN_T(userId)
+  , userId VARCHAR2(20) REFERENCES JOIN_T(userId) ON DELETE CASCADE
   ,	url VARCHAR2(100)
   , name VARCHAR2(100)
 );
@@ -34,6 +41,10 @@ INSERT INTO BOOKMARK_T
 SELECT * FROM BOOKMARK_T ORDER BY id;
 DROP TABLE BOOKMARK_T;
 DROP SEQUENCE SEQ_BOOKMARK_T;
+
+----------------------------------------------------------------
+
+# BOARD_T
 
 /**
 * 공지사항이 있는 게시판
@@ -73,7 +84,7 @@ CREATE TABLE BOARD_T(
   , btype VARCHAR2(1) CHECK(btype IN('N', 'B')) NOT NULL
   , title VARCHAR2(500) NOT NULL
   , context VARCHAR2(4000) NOT NULL
-  , writer VARCHAR2(20) REFERENCES JOIN_T(userID)
+  , writer VARCHAR2(20) REFERENCES JOIN_T(userID) ON DELETE CASCADE
   , createDate DATE DEFAULT(SYSDATE)
   , updateDate DATE DEFAULT(SYSDATE)
   , viewCnt NUMBER DEFAULT(0)
@@ -161,11 +172,13 @@ DROP SEQUENCE BOARD_S;
 
 -------------------------------------------------------------------------------
 
+# COMMENT_T
+
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
 	id NUMBER PRIMARY KEY
-  , bnum NUMBER REFERENCES BOARD_T(id)
-  , writer VARCHAR2(50) REFERENCES JOIN_T(userId)
+  , bnum NUMBER REFERENCES BOARD_T(id) ON DELETE CASCADE
+  , writer VARCHAR2(50) REFERENCES JOIN_T(userId) ON DELETE CASCADE
   , context VARCHAR2(1000) NOT NULL
   , createDate TIMESTAMP DEFAULT(CURRENT_TIMESTAMP)
   , cLevel NUMBER DEFAULT(0)
@@ -174,35 +187,35 @@ CREATE TABLE COMMENT_T(
 );
 
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트1', DEFAULT
+, 1, 'abcdef', '댓글테스트1', DEFAULT
 , DEFAULT
 , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 , DEFAULT
 );
 
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트2', DEFAULT
+, 1, 'abcdef', '댓글테스트2', DEFAULT
 , DEFAULT
 , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 , DEFAULT
 );
 
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트3', DEFAULT
+, 1, 'abcdef', '댓글테스트3', DEFAULT
 , DEFAULT
 , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 , DEFAULT
 );
 
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트4', DEFAULT
+, 1, 'abcdef', '댓글테스트4', DEFAULT
 , DEFAULT
 , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 , DEFAULT
 );
 
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트5', DEFAULT
+, 1, 'abcdef', '댓글테스트5', DEFAULT
 , DEFAULT
 , (SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
 , DEFAULT
@@ -214,9 +227,9 @@ UPDATE COMMENT_T
    SET cReply_SEQ = cReply_SEQ + 1
  WHERE cReply_SEQ > (SELECT cReply_SEQ FROM COMMENT_T WHERE id = 1)
    AND cRef = (SELECT cRef FROM COMMENT_T WHERE id = 1)
-   AND bnum = 19;
+   AND bnum = 14;
 INSERT INTO COMMENT_T VALUES((SELECT NVL(MAX(id), 0)+1 FROM COMMENT_T)
-, 19, 'abcdef', '댓글테스트', DEFAULT
+, 14, 'abcdef', '댓글테스트', DEFAULT
 , (SELECT cLevel+1 FROM COMMENT_T WHERE id = 1)
 , (SELECT cRef FROM COMMENT_T WHERE id = 1)
 , (SELECT cReply_SEQ + 1 FROM COMMENT_T WHERE id = 1)
