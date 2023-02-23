@@ -27,8 +27,10 @@
 					<c:set var="data" value="${requestScope.data }" />
 					<div class="mx-3 mt-2">
 						${data.id } | ${data.title } | ${data.writer } | ${data.updateDate } | ${data.viewCnt }
-						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
-						<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
+						<c:if test="${sessionScope.user.id eq data.writer }">
+							<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath()%>/board/update?id=${data.id }'">수정</button>
+							<button class="btn btn-outline-secondary btn-sm" type="submit" form="deleteForm${data.id }">삭제</button>
+						</c:if>
 						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='<%=request.getContextPath() %>/board'">목록으로</button>
 						<c:if test="${not empty requestScope.error }">
 							<span style="color: red;">requestScope.error</span>
