@@ -36,7 +36,7 @@
 					<input class="col-9 form-control" type="text" name="name" value="${requestScope.data.name }">
 				</div>
 				<div>
-					<button class="mt-2 btn btn-outline-secondary" type="submit">수정</button>
+					<button class="mt-2 btn btn-outline-danger" type="submit">수정</button>
 				</div>
 			</form>
 		</div>
