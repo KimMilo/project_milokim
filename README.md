@@ -72,11 +72,5 @@ Version Control System|Git / github
 
 
 3. SQL문  
-[Dclass_almin_almin2021.txt](https://github.com/Seonhea/AlMin/files/7760493/Dclass_almin_almin2021.txt)
-
-4. 보고서 및 발표PPT  
-[[알바의 민족] 기획보고서.pdf](https://github.com/Seonhea/AlMin/files/7760484/default.pdf)  
-[[알바의 민족] DB설계보고서.pdf](https://github.com/Seonhea/AlMin/files/7760485/DB.pdf)  
-[[알바의 민족] 클래스 설계보고서.pdf](https://github.com/Seonhea/AlMin/files/7760486/default.pdf)  
-[[알바의 민족] 파이널 발표자료.pdf](https://github.com/Seonhea/AlMin/files/7760479/default.pdf)
+[web_admin_admin(dynamic_sm).txt](https://github.com/KimMilo/project_milokim/files/10922789/web_admin_admin.dynamic_sm.txt)
 
