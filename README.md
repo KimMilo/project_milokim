@@ -25,9 +25,7 @@ IDE|STS 3.9.12 / DBeaver, sqldeveloper
 Version Control System|Git / github
 ***
 ## 프로젝트 기능 구현
-
-*
-    # 전체 페이지
+    * 전체 페이지
        - 게시판 조회(상세조회 포함) 외의 모든 페이지는 회원만 접근 가능
        - 회원 접근 권한 session 정보 활용
  
@@ -47,6 +45,7 @@ Version Control System|Git / github
 	▷ 즐겨찾기 관리
 	    - 즐겨찾기 조회 : 로그인 시 해당 계정의 즐겨찾기 조회
 	    - 즐겨찾기 등록/수정/삭제 : 로그인 시 등록, 수정 및 삭제권한
+	    
 ***
 ## 주요 기능
 * 
