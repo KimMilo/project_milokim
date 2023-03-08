@@ -72,5 +72,5 @@ Version Control System|Git / github
 
 
 3. SQL문  
-[web_admin_admin(dynamic_sm).txt](https://github.com/KimMilo/project_milokim/files/10922789/web_admin_admin.dynamic_sm.txt)
+[web_admin_admin(dynamic_sm).txt](https://github.com/KimMilo/project_milokim/files/10922794/web_admin_admin.dynamic_sm.txt)
 
