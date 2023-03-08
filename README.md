@@ -50,19 +50,19 @@ Version Control System|Git / github
 ***
 ## 주요 기능
 * 
-![0 메인](https://user-images.githubusercontent.com/115056845/223771633-0ab355e5-f819-42da-8ec5-c242c03586a5.png)
-![1 회원가입](https://user-images.githubusercontent.com/115056845/223771640-4d253bc7-4893-4bfd-9a0e-a66d922d955d.png)
-![2 로그인](https://user-images.githubusercontent.com/115056845/223771644-96253b2b-163d-470e-a2d2-96d17eaa53a1.png)
-![3 아이디찾기](https://user-images.githubusercontent.com/115056845/223771647-c5de15d3-9f3c-4ee7-aef5-4dbc0fe2d2ca.png)
-![4 개인정보-수정](https://user-images.githubusercontent.com/115056845/223771649-050a8bf4-24f2-470e-9eda-c2df01fdf031.png)
-![5 개인정보-탈퇴](https://user-images.githubusercontent.com/115056845/223771650-604c63c8-55a2-4d22-8e1e-790afb49690f.png)
-![6 게시판-전체조회](https://user-images.githubusercontent.com/115056845/223771653-0b533243-19bf-405c-8751-a23cde2ddfd3.png)
-![7 게시글-등록](https://user-images.githubusercontent.com/115056845/223771655-4819ecfe-28dc-4102-8fb7-6d5d9a54bc35.png)
-![8 게시판-상세(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771657-aa47bca4-7f32-44a1-a19f-b43af3e02d1b.png)
-![9 게시판-수정](https://user-images.githubusercontent.com/115056845/223771659-74708e3f-4567-4534-bad8-7de436164269.png)
-![10 게시글-상세(댓글-대댓글, 수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771661-94b6cc54-7e67-49d7-a6a4-ead04c86fa6a.png)
-![11 즐겨찾기-조회(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771662-a486a639-e3d7-4862-b8ee-b2df893718e3.png)
-![12 즐겨찾기-수정](https://user-images.githubusercontent.com/115056845/223771664-ffcbc810-be7b-4893-8f13-a157d60946a4.png)
+![0 메인](https://user-images.githubusercontent.com/115056845/223771633-0ab355e5-f819-42da-8ec5-c242c03586a5.png)<br>
+![1 회원가입](https://user-images.githubusercontent.com/115056845/223771640-4d253bc7-4893-4bfd-9a0e-a66d922d955d.png)<br>
+![2 로그인](https://user-images.githubusercontent.com/115056845/223771644-96253b2b-163d-470e-a2d2-96d17eaa53a1.png)<br>
+![3 아이디찾기](https://user-images.githubusercontent.com/115056845/223771647-c5de15d3-9f3c-4ee7-aef5-4dbc0fe2d2ca.png)<br>
+![4 개인정보-수정](https://user-images.githubusercontent.com/115056845/223771649-050a8bf4-24f2-470e-9eda-c2df01fdf031.png)<br>
+![5 개인정보-탈퇴](https://user-images.githubusercontent.com/115056845/223771650-604c63c8-55a2-4d22-8e1e-790afb49690f.png)<br>
+![6 게시판-전체조회](https://user-images.githubusercontent.com/115056845/223771653-0b533243-19bf-405c-8751-a23cde2ddfd3.png)<br>
+![7 게시글-등록](https://user-images.githubusercontent.com/115056845/223771655-4819ecfe-28dc-4102-8fb7-6d5d9a54bc35.png)<br>
+![8 게시판-상세(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771657-aa47bca4-7f32-44a1-a19f-b43af3e02d1b.png)<br>
+![9 게시판-수정](https://user-images.githubusercontent.com/115056845/223771659-74708e3f-4567-4534-bad8-7de436164269.png)<br>
+![10 게시글-상세(댓글-대댓글, 수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771661-94b6cc54-7e67-49d7-a6a4-ead04c86fa6a.png)<br>
+![11 즐겨찾기-조회(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223771662-a486a639-e3d7-4862-b8ee-b2df893718e3.png)<br>
+![12 즐겨찾기-수정](https://user-images.githubusercontent.com/115056845/223771664-ffcbc810-be7b-4893-8f13-a157d60946a4.png)<br>
 ***
 ## Document
 1. 유스케이스
