@@ -50,17 +50,28 @@ Version Control System|Git / github
 ***
 ## 주요 기능
 * 
-
+![메인](https://user-images.githubusercontent.com/115056845/223767627-098cf001-f655-4b1d-a20d-b992b7098bad.png)
+![회원가입](https://user-images.githubusercontent.com/115056845/223767807-c595acb3-4117-418e-9671-4cbecfb75fd0.png)
+![로그인](https://user-images.githubusercontent.com/115056845/223767838-4d69b992-74df-4d1b-be28-2f6840947901.png)
+![아이디찾기](https://user-images.githubusercontent.com/115056845/223767904-adcc1f78-705a-4c7f-aaae-7349964f6361.png)
+![개인정보-수정](https://user-images.githubusercontent.com/115056845/223768063-ed1a5bd5-064b-4824-880e-85d01c876285.png)
+![개인정보-탈퇴](https://user-images.githubusercontent.com/115056845/223768094-97d1ebd4-4c5c-4cd6-b501-785d7e34b1ce.png)
+![게시판-전체조회](https://user-images.githubusercontent.com/115056845/223768197-38ea8b9f-00d6-4341-adf7-79a56d635ab5.png)
+![게시글-등록](https://user-images.githubusercontent.com/115056845/223768242-73c272f2-0241-4d02-af9e-a98e34342e1f.png)
+![게시판-상세(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223768312-d3a5dbd6-925d-4c99-ba78-6f0ab08e383d.png)
+![게시판-수정](https://user-images.githubusercontent.com/115056845/223768358-828fdbcc-dbb9-440f-9e3b-1af08a7b78ef.png)
+![게시글-상세(댓글-대댓글, 수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223768461-f0fd9a6d-c34f-4bd3-8d16-8ce269c3cb71.png)
+![즐겨찾기-조회(수정 및 삭제)](https://user-images.githubusercontent.com/115056845/223768596-c1a410df-79ac-4097-9e59-217247fffa12.png)
+![즐겨찾기-수정](https://user-images.githubusercontent.com/115056845/223768605-b6ad0b0c-5923-43bc-b4a1-76110daaadc3.png)
 ***
 ## Document
 1. 유스케이스
-<img src="https://user-images.githubusercontent.com/89828294/147045092-4e5bef5f-b9e0-4e48-86c2-a42d8f2e41eb.png">
+
 
 2. ERD
-<img src="https://user-images.githubusercontent.com/89828294/147045496-4f8b6c82-3aa0-440f-96e2-7b5ae9a02559.png">
+
 
 3. SQL문  
-[[알바의 민족] Oracle DB 계정생성.txt](https://github.com/Seonhea/AlMin/files/7760540/Oracle.DB.txt)  
 [Dclass_almin_almin2021.txt](https://github.com/Seonhea/AlMin/files/7760493/Dclass_almin_almin2021.txt)
 
 4. 보고서 및 발표PPT  
