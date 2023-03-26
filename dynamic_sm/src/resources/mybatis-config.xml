@@ -9,8 +9,8 @@
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1"/>
-        <property name="username" value="DEV01"/>
-        <property name="password" value="DEV01"/>
+        <property name="username" value="dev01"/>
+        <property name="password" value="dev01"/>
       </dataSource>
     </environment>
   </environments>
